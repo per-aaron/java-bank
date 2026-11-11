@@ -3,7 +3,7 @@ package org.example.bank;
 import java.time.LocalDate;
 
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         BankAccount bankAccount = new BankAccount();
 
         // Given a client makes a deposit of 1000 on 2021-01-10

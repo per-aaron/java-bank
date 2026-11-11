@@ -10,8 +10,8 @@ import static java.lang.Math.abs;
 
 public class BankAccount {
     int balance;
-    ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-    private static DecimalFormat df = new DecimalFormat("0.00");
+    ArrayList<Transaction> transactions = new ArrayList<>();
+    private final DecimalFormat df = new DecimalFormat("0.00");
 
     public void deposit(int amount, LocalDate date){
         Transaction transaction = new Transaction(date, amount * 100, this.balance);
@@ -28,16 +28,18 @@ public class BankAccount {
     public String generateStatement(){
         // Sorts transactions by creating a comparator that compares the output of getDate() method on each transaction
         this.transactions.sort(Comparator.comparing(Transaction::getDate));
-        String output = "date || credit || debit || balance\n";
+        //replaced concat with stringBuilder, considered better practice for performance and memory usage with fewer objects created
+        StringBuilder output = new StringBuilder("date || credit || debit || balance\n");
         for (Transaction transaction : this.transactions.reversed()) {
             String amount = df.format(abs(transaction.amount/100));
             String recordBalance = df.format(transaction.balance/100);
-            if (transaction.type == "deposit"){
-                output += transaction.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " || " + amount + " || " + "-" + " || " + recordBalance + "\n";
+            if (transaction.type.equals("deposit")){
+                //similarly chained appends prevents creation of new StringBuilder objects when compiler looks at concat in loops
+                output.append(transaction.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))).append(" || ").append(amount).append(" || ").append("-").append(" || ").append(recordBalance).append("\n");
             } else {
-                output += transaction.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " || " + "-" + " || " + amount + " || " + recordBalance + "\n";
+                output.append(transaction.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))).append(" || ").append("-").append(" || ").append(amount).append(" || ").append(recordBalance).append("\n");
             }
         }
-        return output;
+        return output.toString();
     }
 }

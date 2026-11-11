@@ -6,7 +6,7 @@ public class Transaction {
     LocalDate date;
     int amount;
     int balance;
-    String type = "";
+    String type;
 
     public Transaction(LocalDate transactionDate, int amount, int oldBalance){
         this.date = transactionDate;

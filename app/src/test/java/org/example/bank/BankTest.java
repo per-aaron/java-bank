@@ -42,10 +42,12 @@ public class BankTest {
 
         // When she prints her bank statement
         Assert.assertEquals(
-                "date || credit || debit || balance\n" +
-                        "14/01/2021 || - || 500.00 || 2500.00\n" +
-                        "13/01/2021 || 2000.00 || - || 3000.00\n" +
-                        "10/01/2021 || 1000.00 || - || 1000.00\n",
+                """
+                        date || credit || debit || balance
+                        14/01/2021 || - || 500.00 || 2500.00
+                        13/01/2021 || 2000.00 || - || 3000.00
+                        10/01/2021 || 1000.00 || - || 1000.00
+                        """,
                 bankAccount.generateStatement());
     }
 }
