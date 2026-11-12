@@ -3,10 +3,10 @@ package org.example.bank;
 import java.time.LocalDate;
 
 public class Transaction {
-    LocalDate date;
-    int amount;
-    int balance;
-    String type;
+    final LocalDate date;
+    final int amount;
+    final int balance;
+    final String type;
 
     public Transaction(LocalDate transactionDate, int amount, int oldBalance){
         this.date = transactionDate;
@@ -21,6 +21,18 @@ public class Transaction {
 
     public LocalDate getDate() {
         return this.date;
+    }
+
+    public int getAmount() {
+        return this.amount;
+    }
+
+    public int getBalance() {
+        return this.balance;
+    }
+
+    public String getType() {
+        return this.type;
     }
 
 }

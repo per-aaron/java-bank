@@ -16,7 +16,7 @@ public class BankTest {
     public void depositIncreasesBalance() {
         BankAccount bankAccount = new BankAccount();
         bankAccount.deposit(1000, LocalDate.of(2021,1,10));
-        Assert.assertEquals(1000, bankAccount.balance);
+        Assert.assertEquals(1000, bankAccount.getBankBalance());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class BankTest {
         BankAccount bankAccount = new BankAccount();
         bankAccount.deposit(1000, LocalDate.of(2021,1,10));
         bankAccount.withdraw(400, LocalDate.of(2021, 1, 13));
-        Assert.assertEquals(600, bankAccount.balance);
+        Assert.assertEquals(600, bankAccount.getBankBalance());
     }
 
     @Test
